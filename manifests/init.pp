@@ -9,7 +9,7 @@ class git ($version = "latest", $package = "git") {
 define git::clone($username,$password,$url,$path) {
     include git
     exec { "git-http-clone-$name":
-        command => "/usr/bin/git clone `echo $url | awk -vu=$user -vp=$password -vat=@ -vdd=: -F:// '{ print \$1 FS u dd p at \$2 }'` $path",
+        command => "/usr/bin/git clone `echo $url | awk -vu=$username -vp=$password -vat=@ -vdd=: -F:// '{ print \$1 FS u dd p at \$2 }'` $path",
 	creates => "$path",
         requires => Package["$git::package]
     }
